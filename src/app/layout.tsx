@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { NavBar, NavBarSkeleton } from "@/components/nav-bar";
+import { Suspense } from "react";
+import QueryProvider from "@/components/query-provider";
 
 export const metadata: Metadata = {
   title: "Media Platform",
@@ -14,15 +17,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+      <body suppressHydrationWarning>
+        <QueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Suspense fallback={<NavBarSkeleton />}>
+              <NavBar />
+            </Suspense>
+            {children}
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );
