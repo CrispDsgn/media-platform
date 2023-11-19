@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../../../components/ui/card";
+import Link from "next/link";
 
 type Anime = {
   id: string;
@@ -17,20 +18,22 @@ type Anime = {
 
 export default function CardAnime({ anime }: { anime: Anime }) {
   return (
-    <Card className="max-w-sm">
-      <CardHeader>
-        <CardTitle>{anime.title}</CardTitle>
-      </CardHeader>
+    <Link href={`/media/anime/${anime.id}`}>
+      <Card className="max-w-sm">
+        <CardHeader>
+          <CardTitle>{anime.title}</CardTitle>
+        </CardHeader>
 
-      <CardContent>
-        <Image
-          src={anime.image}
-          alt={anime.title}
-          width={100}
-          height={100}
-          style={{ width: "100%", height: "auto" }}
-        />
-      </CardContent>
-    </Card>
+        <CardContent>
+          <Image
+            src={anime.image}
+            alt={anime.title}
+            width={100}
+            height={100}
+            style={{ width: "100%", height: "auto" }}
+          />
+        </CardContent>
+      </Card>
+    </Link>
   );
 }

@@ -7,7 +7,7 @@ import { useDebounce } from "@/lib/hooks/use-debounce";
 
 export default function AnimeSearch() {
   const [search, setSearch] = useState<string>("");
-  const searchQuery = useDebounce(search, 1500);
+  const searchQuery = useDebounce(search, 1000);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();

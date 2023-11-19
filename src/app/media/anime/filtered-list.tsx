@@ -1,13 +1,13 @@
 "use client";
 
-import { getAnime } from "@/lib/services/anime";
+import { getAnimeList } from "@/lib/services/anime";
 import { useQuery } from "@tanstack/react-query";
 import CardAnime from "./card-anime";
 
 export default function FilteredList({ searchValue }: { searchValue: string }) {
   const { isPending, isError, data, error } = useQuery({
     queryKey: ["anime", searchValue],
-    queryFn: () => getAnime(searchValue),
+    queryFn: () => getAnimeList(searchValue),
   });
 
   if (isPending) {

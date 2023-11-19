@@ -1,6 +1,11 @@
-export async function getAnime(query: string) {
+const SERVICE_URL = process.env.NEXT_PUBLIC_CONSUMET_SERVICE_URL;
+const SERVICE_PORT = process.env.NEXT_PUBLIC_CONSUMET_SERVICE_PORT;
+
+export async function getAnimeList(query: string) {
+  if (!query) return [];
+
   try {
-    const res = await fetch("http://localhost:3000/api/anime", {
+    const res = await fetch(`${SERVICE_URL}:${SERVICE_PORT}/api/anime`, {
       method: "GET",
       headers: {
         "query-search": query,
