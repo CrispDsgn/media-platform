@@ -10,7 +10,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { useDebounce } from "@/lib/hooks/use-debounce";
-import { getAnimeList } from "@/lib/services/anime";
+import { getAnimeList } from "@/lib/services/client/anime";
 import { AnimePreview } from "@/lib/types/anime";
 import { useQuery } from "@tanstack/react-query";
 import { SearchIcon } from "lucide-react";

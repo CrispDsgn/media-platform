@@ -1,8 +1,8 @@
-import { ANIME } from "@consumet/extensions";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { gogoanime } from "@/lib/services/server/providers";
 
 type AnimeEpisode = {
   id: string;
@@ -31,7 +31,6 @@ export default async function AnimeInfo({
 }: {
   params: { id: string };
 }) {
-  const gogoanime = new ANIME.Gogoanime();
   const animeInfo = (await gogoanime.fetchAnimeInfo(params.id)) as AnimeInfo;
 
   return (

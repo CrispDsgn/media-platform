@@ -1,5 +1,5 @@
-import { ANIME } from "@consumet/extensions";
 import EpisodePlayer from "./player";
+import { gogoanime } from "@/lib/services/server/providers";
 
 type Source = {
   url: string;
@@ -16,7 +16,6 @@ export default async function AnimeEpisodePlayer({
 }: {
   params: { episodeId: string };
 }) {
-  const gogoanime = new ANIME.Gogoanime();
   const episodeInfo = (await gogoanime.fetchEpisodeSources(
     params.episodeId
   )) as EpisodeInfo;

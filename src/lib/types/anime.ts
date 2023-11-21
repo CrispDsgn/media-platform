@@ -1,5 +1,24 @@
 import * as z from "zod";
 
+export const recentEpisodeSchema = z.object({
+  id: z.string(),
+  episodeId: z.string(),
+  episodeNumber: z.number(),
+  title: z.string(),
+  image: z.string(),
+  url: z.string(),
+});
+export type RecentEpisode = z.infer<typeof recentEpisodeSchema>;
+
+export const topAiringSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  image: z.string(),
+  url: z.string(),
+  genres: z.array(z.string()),
+});
+export type TopAiring = z.infer<typeof topAiringSchema>;
+
 export const animePreviewSchema = z.object({
   id: z.string(),
   title: z.string(),
@@ -14,6 +33,18 @@ export const searchResultsSchema = z.object({
   currentPage: z.number(),
   hasNextPage: z.boolean(),
   results: z.array(animePreviewSchema),
+});
+
+export const listTopAiringSchema = z.object({
+  currentPage: z.number(),
+  hasNextPage: z.boolean(),
+  results: z.array(topAiringSchema),
+});
+
+export const listRecentEpisodeSchema = z.object({
+  currentPage: z.number(),
+  hasNextPage: z.boolean(),
+  results: z.array(recentEpisodeSchema),
 });
 
 export const animeEpisodeSchema = z.object({
