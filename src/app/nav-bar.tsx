@@ -13,9 +13,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Card } from "./ui/card";
-import { ThemeToggle } from "./theme-toggle";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Card } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -112,16 +111,3 @@ const ListItem = React.forwardRef<
   );
 });
 ListItem.displayName = "ListItem";
-
-export const NavBarSkeleton = () => {
-  return (
-    <Card className="flex justify-between gap-4 p-4">
-      <div className="flex flex-col w-1/2 gap-2 justify-around">
-        <Skeleton className="h-2" />
-        <Skeleton className="h-2" />
-      </div>
-
-      <Skeleton className="w-8 h-8" />
-    </Card>
-  );
-};
