@@ -73,8 +73,8 @@ export const sourceLinkSchema = z.object({
 export const episodeSourcesSchema = z.object({
   headers: z.object({
     Referer: z.string(),
-    watchsb: z.string(),
-    "User-Agent": z.string(),
+    watchsb: z.string().optional(),
+    "User-Agent": z.string().optional(),
   }),
   sources: z.array(sourceLinkSchema),
 });

@@ -6,6 +6,7 @@ import { getAnimeInfoById } from "../_lib/server";
 import { notFound } from "next/navigation";
 import Banner from "./_components/banner";
 import AnimeDetails from "./_components/anime-details";
+import AnimeEpisodes from "./_components/anime-episodes";
 
 export default async function AnimeInfo({
   params,
@@ -30,16 +31,7 @@ export default async function AnimeInfo({
         </TabsContent>
 
         <TabsContent value="episodes">
-          <div className="flex flex-col gap-2">
-            {animeInfo.episodes.map((episode, index) => (
-              <Link
-                key={index}
-                href={`/media/anime/${animeInfo.id}/${episode.id}`}
-              >
-                Episode {episode.number}
-              </Link>
-            ))}
-          </div>
+          <AnimeEpisodes anime={animeInfo} />
         </TabsContent>
       </Tabs>
     </div>
