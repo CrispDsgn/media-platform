@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { NavBar } from "@/app/nav-bar";
+import { NavBar } from "@/app/_components/nav-bar";
 import QueryProvider from "@/components/query-provider";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
         <QueryProvider>
-          <ThemeProvider attribute="class" defaultTheme="system">
+          <ThemeProvider attribute="class" defaultTheme="dark">
             <NavBar />
             {children}
           </ThemeProvider>

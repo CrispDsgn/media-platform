@@ -1,5 +1,5 @@
 import EpisodePlayer from "./player";
-import { gogoanime } from "@/lib/services/server/providers";
+import { gogoanime } from "@/app/_lib/providers";
 
 type Source = {
   url: string;

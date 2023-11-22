@@ -2,87 +2,36 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { gogoanime } from "@/lib/services/server/providers";
-
-type AnimeEpisode = {
-  id: string;
-  number: number;
-  url: string;
-};
-
-type AnimeInfo = {
-  id: string;
-  title: string;
-  url: string;
-  genres: string[];
-  totalEpisodes: number;
-  image: string;
-  releaseDate: string;
-  description: string;
-  subOrDub: string;
-  type: string;
-  status: string;
-  otherName: string;
-  episodes: AnimeEpisode[];
-};
+import { getAnimeInfoById } from "../_lib/server";
+import { notFound } from "next/navigation";
+import Banner from "./_components/banner";
+import AnimeDetails from "./_components/anime-details";
 
 export default async function AnimeInfo({
   params,
 }: {
   params: { id: string };
 }) {
-  const animeInfo = (await gogoanime.fetchAnimeInfo(params.id)) as AnimeInfo;
+  const animeInfo = await getAnimeInfoById(params.id);
+  if (!animeInfo) return notFound();
 
   return (
-    <div className="flex flex-col gap-4">
-      <Link href={"/media/anime"}>
-        <Button variant={"link"}>Back to list</Button>
-      </Link>
-
-      <Image
-        src={animeInfo.image}
-        width={100}
-        height={300}
-        alt={animeInfo.title}
-        style={{ width: "100%", height: "400px" }}
-      />
+    <div className="flex flex-col gap-8">
+      <Banner anime={animeInfo} />
 
       <Tabs defaultValue="about">
-        <TabsList>
-          <TabsTrigger value="about">About</TabsTrigger>
+        <TabsList className="mb-4">
+          <TabsTrigger value="about">Details</TabsTrigger>
           <TabsTrigger value="episodes">Episodes</TabsTrigger>
         </TabsList>
+
         <TabsContent value="about">
-          <div className="grid grid-cols-2 gap-4">
-            <span>Genres:</span>
-            <div className="flex flex-wrap gap-2">
-              {animeInfo.genres.map((genre, index) => (
-                <span key={index}>{genre},</span>
-              ))}
-            </div>
-
-            <span>Total episodes:</span>
-            <span>{animeInfo.totalEpisodes}</span>
-
-            <span>Release date:</span>
-            <span>{animeInfo.releaseDate}</span>
-
-            <span>Sub/Dub:</span>
-            <span>{animeInfo.subOrDub}</span>
-
-            <span>Status:</span>
-            <span>{animeInfo.status}</span>
-
-            <span>Other name:</span>
-            <span>{animeInfo.otherName}</span>
-
-            <span>Description:</span>
-            <span>{animeInfo.description}</span>
-          </div>
+          <AnimeDetails anime={animeInfo} />
         </TabsContent>
+
         <TabsContent value="episodes">
           <div className="flex flex-col gap-2">
-            {animeInfo.episodes.map((episode: AnimeEpisode, index) => (
+            {animeInfo.episodes.map((episode, index) => (
               <Link
                 key={index}
                 href={`/media/anime/${animeInfo.id}/${episode.id}`}

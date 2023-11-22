@@ -1,4 +1,4 @@
-import { searchResultsSchema } from "../../types/anime";
+import { searchResultsSchema } from "./schema";
 
 const SERVICE_URL = process.env.NEXT_PUBLIC_CONSUMET_SERVICE_URL;
 const SERVICE_PORT = process.env.NEXT_PUBLIC_CONSUMET_SERVICE_PORT;

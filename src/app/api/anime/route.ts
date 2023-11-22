@@ -1,4 +1,4 @@
-import { gogoanime } from "@/lib/services/server/providers";
+import { gogoanime } from "@/app/_lib/providers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {

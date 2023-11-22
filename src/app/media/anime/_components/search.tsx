@@ -10,14 +10,14 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { useDebounce } from "@/lib/hooks/use-debounce";
-import { getAnimeList } from "@/lib/services/client/anime";
-import { AnimePreview } from "@/lib/types/anime";
 import { useQuery } from "@tanstack/react-query";
 import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { AnimePreview } from "../_lib/schema";
+import { getAnimeList } from "../_lib/client";
 
 export default function Search() {
   const [open, setOpen] = useState(false);

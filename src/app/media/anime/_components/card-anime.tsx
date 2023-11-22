@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Card } from "../../../components/ui/card";
+import { Card } from "../../../../components/ui/card";
 import Link from "next/link";
-import { AnimePreview, RecentEpisode, TopAiring } from "@/lib/types/anime";
 import { usePathname } from "next/navigation";
+import { AnimePreview, RecentEpisode, TopAiring } from "../_lib/schema";
 
 export default function CardAnime({
   anime,

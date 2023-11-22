@@ -1,9 +1,9 @@
 "use client";
 
-import { AnimePreview, RecentEpisode, TopAiring } from "@/lib/types/anime";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import CardAnime from "./card-anime";
+import { AnimePreview, RecentEpisode, TopAiring } from "../_lib/schema";
 
 export default function Slider({
   title,

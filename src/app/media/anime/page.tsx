@@ -1,6 +1,6 @@
-import Search from "./search";
-import Slider from "./slider";
-import { getRecentEpisodes, getTopAiring } from "@/lib/services/server/anime";
+import Search from "./_components/search";
+import Slider from "./_components/slider";
+import { getRecentEpisodes, getTopAiring } from "./_lib/server";
 
 export default async function AnimeSearch() {
   const topAiring = await getTopAiring();

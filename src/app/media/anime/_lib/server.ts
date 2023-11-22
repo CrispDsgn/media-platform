@@ -1,9 +1,10 @@
 import "server-only";
-import { gogoanime } from "./providers";
+import { gogoanime } from "@/app/_lib/providers";
 import {
+  animeSchema,
   listRecentEpisodeSchema,
   listTopAiringSchema,
-} from "@/lib/types/anime";
+} from "./schema";
 
 export async function getTopAiring() {
   try {
@@ -36,5 +37,22 @@ export async function getRecentEpisodes() {
   } catch (e) {
     console.log(e);
     return [];
+  }
+}
+
+export async function getAnimeInfoById(id: string) {
+  try {
+    const result = await gogoanime.fetchAnimeInfo(id);
+    const anime = animeSchema.safeParse(result);
+
+    if (!anime.success) {
+      console.log(anime.error);
+      return null;
+    } else {
+      return anime.data;
+    }
+  } catch (e) {
+    console.log(e);
+    return null;
   }
 }

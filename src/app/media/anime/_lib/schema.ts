@@ -62,6 +62,7 @@ export const animeSchema = animePreviewSchema.extend({
   totalEpisodes: z.number(),
   episodes: z.array(animeEpisodeSchema),
 });
+export type Anime = z.infer<typeof animeSchema>;
 
 export const sourceLinkSchema = z.object({
   url: z.string(),
